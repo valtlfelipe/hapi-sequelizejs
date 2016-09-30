@@ -1,8 +1,8 @@
 # hapi-sequelizejs [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs)
 hapi.js plugin for the Sequelize ORM
 
-### What's the difference between SweetAlert and SweetAlert2?
-Reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
+### What's the difference between hapi-sequelize and hapi-sequelizejs?
+The reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
 [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide)
 
 ## Warning!
