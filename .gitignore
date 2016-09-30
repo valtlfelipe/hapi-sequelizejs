@@ -4,3 +4,5 @@ npm-debug.log
 .DS_Store
 myhostname
 test/db
+test/db.sqlite
+coverage.html

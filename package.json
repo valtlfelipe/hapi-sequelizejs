@@ -6,7 +6,8 @@
   "scripts": {
     "test": "lab",
     "test-cov-html": "lab -a code -r html -o coverage.html",
-    "lint": "eslint lib/*.js"
+    "lint": "eslint lib/*.js",
+    "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "license": "MIT",
   "devDependencies": {
     "code": "^2.1.1",
+    "coveralls": "^2.11.14",
     "eslint": "^3.6.1",
     "hapi": "^13.3.0",
     "lab": "^10.3.0",
@@ -46,6 +48,7 @@
   },
   "dependencies": {
     "glob": "^7.0.3",
-    "joi": "^8.1.0"
+    "joi": "^8.1.0",
+    "sqlite3": "^3.1.4"
   }
 }

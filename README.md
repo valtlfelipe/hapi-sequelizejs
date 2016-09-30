@@ -1,4 +1,4 @@
-# hapi-sequelizejs [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs)
+# hapi-sequelizejs [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs) [![Coverage Status](https://coveralls.io/repos/github/valtlfelipe/hapi-sequelizejs/badge.svg?branch=master)](https://coveralls.io/github/valtlfelipe/hapi-sequelizejs?branch=master)
 hapi.js plugin for the Sequelize ORM
 
 ### What's the difference between hapi-sequelize and hapi-sequelizejs?

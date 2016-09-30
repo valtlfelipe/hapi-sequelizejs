@@ -7,6 +7,8 @@ const Code = require('code');
 const Hapi = require('hapi');
 const Sequelize = require('sequelize');
 
+const DB = require('../lib/DB');
+
 // Module globals
 const internals = {};
 
@@ -18,44 +20,96 @@ const expect = Code.expect;
 
 suite('hapi-sequelizejs', () => {
 
-  // test('accepts one or more databases to be configured', { parallel: true }, (done) => {
-  //
-  //   expect(true).to.equal(true);
-  //   done();
-  // });
-  //
-  // test('returns all model files for provided path(s) / glob(s)', { parallel: true }, (done) => {
-  //
-  // });
+    test('should fail to load with no options', (done) => {
 
+        let server = new Hapi.Server();
 
+        server.register([
+            {
+                register: require('../lib/'),
+                options: {
 
-  // lab.before((done) => {
-  //
-  //   // Create Sequelize instances
-  //   if (process.env.NODE_ENV === 'travis') {
-  //     internals.blogDB = new Sequelize('blog', 'root', '', {
-  //       host: 'localhost',
-  //       port: 3306,
-  //       dialect: 'mysql'
-  //     });
-  //     internals.shopDB = new Sequelize('shop', 'root', '', {
-  //       host: 'localhost',
-  //       port: 3306,
-  //       dialect: 'mysql'
-  //     })
-  //   } else {
-  //     internals.blogDB = new Sequelize('blog', null, null, {
-  //       dialect: 'sqlite',
-  //       storage: Path.join(__dirname, 'db/blog.sqlite')
-  //     });
-  //     internals.shopDB = new Sequelize('shop', null, null, {
-  //       dialect: 'sqlite',
-  //       storage: Path.join(__dirname, 'db/shop.sqlite')
-  //     });
-  //   }
-  //
-  //   done();
-  // });
+                }
+            }
+        ], (err) => {
+            expect(err).to.be.instanceof(Error);
+            done();
+        });
+    });
+
+    test('should load a good configuration', (done) => {
+
+        let server = new Hapi.Server();
+        server.register([
+            {
+                register: require('../lib/'),
+                options: [{
+                    name: 'test',
+                    sequelize: new Sequelize('test', null, null, {
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite')
+                    })
+                }]
+            }
+        ], (err) => {
+            expect(err).to.be.undefined();
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+            done();
+        });
+    });
+
+    test('should load all models', (done) => {
+
+        let server = new Hapi.Server();
+        server.register([
+            {
+                register: require('../lib/'),
+                options: [{
+                    name: 'test',
+                    models: [Path.join(__dirname, '/models/**/*.js')],
+                    sequelize: new Sequelize('test', null, null, {
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite')
+                    })
+                }]
+            }
+        ], (err) => {
+            expect(err).to.be.undefined();
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+            expect(server.plugins['hapi-sequelizejs'].test.getModels()).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Category')).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.an.object();
+            done();
+        });
+    });
+
+    test('should sync all models', (done) => {
+
+        let server = new Hapi.Server();
+        server.register([
+            {
+                register: require('../lib/'),
+                options: [{
+                    name: 'test',
+                    models: [Path.join(__dirname, '/models/**/*.js')],
+                    sync: true,
+                    sequelize: new Sequelize('test', null, null, {
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite')
+                    })
+                }]
+            }
+        ], (err) => {
+            expect(err).to.be.undefined();
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+            expect(server.plugins['hapi-sequelizejs'].test.getModels()).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.an.object();
+            done();
+        });
+    });
 
 });

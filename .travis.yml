@@ -10,8 +10,8 @@ cache:
     - node_modules
 before_script:
   - npm install sequelize@^3.x
-  - mysql -e 'create database shop;'
-  - mysql -e 'create database blog;'
 script:
   - npm run lint
   - npm test
+after_script:
+  - npm run coveralls
