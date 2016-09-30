@@ -16,7 +16,7 @@ const suite = lab.suite;
 const test = lab.test;
 const expect = Code.expect;
 
-suite('hapi-sequelize', () => {
+suite('hapi-sequelizejs', () => {
 
   // test('accepts one or more databases to be configured', { parallel: true }, (done) => {
   //
@@ -57,8 +57,5 @@ suite('hapi-sequelize', () => {
   //
   //   done();
   // });
-
-
-
 
 });
