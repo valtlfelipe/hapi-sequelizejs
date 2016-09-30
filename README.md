@@ -35,6 +35,18 @@ server.register([
 ]);
 ```
 
+### Model Definitions
+A model should export a function that returns a Sequelize model definition ([http://docs.sequelizejs.com/en/latest/docs/models-definition/](http://docs.sequelizejs.com/en/latest/docs/models-definition/)).
+
+```javascript
+module.exports = function (sequelize, DataTypes) {
+    return sequelize.define('Category', {
+        name: DataTypes.STRING,
+        rootCategory: DataTypes.BOOLEAN
+    });
+};
+```
+
 ### Database Instances
 
 Each registration adds a DB instance to the `server.plugins['hapi-sequelizejs']` object with the
