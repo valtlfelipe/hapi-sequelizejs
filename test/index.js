@@ -235,4 +235,27 @@ suite('hapi-sequelizejs', () => {
         });
     });
 
+    test('should call onConnect', (done) => {
+
+        let server = new Hapi.Server();
+        server.register([
+            {
+                register: require('../lib/'),
+                options: [{
+                    name: 'test',
+                    sequelize: new Sequelize('test', null, null, {
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite')
+                    }),
+                    onConnect: (instance) => {
+                        expect(instance).to.be.instanceof(DB);
+                        done();
+                    }
+                }]
+            }
+        ], (err) => {
+            expect(err).to.be.undefined();
+        });
+    });
+
 });
