@@ -37,23 +37,6 @@ suite('hapi-sequelizejs', () => {
         });
     });
 
-    test('should load a bad sequelize configuration', (done) => {
-
-        let server = new Hapi.Server();
-        server.register([
-            {
-                register: require('../lib/'),
-                options: [{
-                    name: 'test',
-                    sequelize: new Sequelize('test', 'test', 'test') //supposing this credentials does not exist
-                }]
-            }
-        ], (err) => {
-            expect(err).to.be.instanceof(Error);
-            done();
-        });
-    });
-
     test('should load a good configuration', (done) => {
 
         let server = new Hapi.Server();
