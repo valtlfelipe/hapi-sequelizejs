@@ -341,5 +341,32 @@ suite('hapi-sequelizejs', () => {
         });
     });
 
+    test('plugin fails to register when Sequelize fails to connect', (done) => {
+
+        let server = new Hapi.Server();
+        server.connection();
+        server.register([{
+            register: require('../lib/'),
+            options: [{
+                name: 'test',
+                models: [Path.join(
+                    __dirname,
+                    '/models/**/*.js'
+                )],
+                sync: true,
+                sequelize: new Sequelize('shop', 'root', '', {
+                    host: '127.0.0.1',
+                    port: 3307,
+                    dialect: 'mysql'
+                })
+            }]
+        }], (err) => {
+            expect(err).to.be.instanceOf(Error);
+            expect(err.message).to.include('ECONNREFUSED');
+
+            done();
+        });
+    });
+
 });
 
