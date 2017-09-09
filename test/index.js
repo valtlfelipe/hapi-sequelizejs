@@ -239,6 +239,59 @@ suite('hapi-sequelizejs', () => {
         ], (err) => {
             expect(err).to.be.undefined();
         });
+	});
+	
+	test('should throw error on getting invalid named DB instance', (
+        done) => {
+
+        let server = new Hapi.Server();
+        server.connection();
+        server.register([{
+            register: require('../lib/'),
+            options: [{
+                name: 'test',
+                models: [Path.join(
+                    __dirname,
+                    '/models/**/*.js'
+                )],
+                sync: true,
+                sequelize: new Sequelize(
+                    'test', null, null, {
+                        dialect: 'sqlite',
+                        storage: Path.join(
+                            __dirname,
+                            'db.sqlite'
+                        )
+                    })
+            }]
+        }], (err) => {
+            expect(err).to.be.undefined();
+
+            let handler = function (request, reply) {
+                try {
+                    request.getDb('inexistent');
+                } catch (err) {
+                    expect(err).to.be.instanceOf(
+                        Error);
+                    return reply(err);
+                }
+            };
+
+            server.route([{
+                method: 'GET',
+                path: '/',
+                handler: handler
+            }, ]);
+
+            server.inject({
+                method: 'GET',
+                url: '/'
+            }, function (response) {
+                expect(response.statusCode).to.equal(
+                    500);
+                done();
+            });
+        });
     });
 
 });
