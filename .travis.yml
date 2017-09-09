@@ -2,8 +2,9 @@ language: node_js
 env:
   - NODE_ENV=travis
 node_js:
-  - "4.4"
-  - "5.10"
+  - "4"
+  - "lts/*"
+  - "node"
 sudo: false
 cache:
   directories:

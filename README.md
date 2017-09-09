@@ -7,7 +7,7 @@ See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/M
 
 ## Warning!
 
-This version is still in beta. Hardly and only tested with current versions of Hapi (13.x) & Sequelize (3.x)
+This version is still in beta. Hardly and only tested with current versions of Hapi (16.x) & Sequelize (3.x)
 
 ### Installation
 
@@ -19,20 +19,16 @@ Simply pass in your sequelize instance and a few basic options and voila. Option
  or an array for multiple dbs.
 
 ```javascript
-server.register([
-  {
-      register: require('hapi-sequelizejs'),
-      options: [
-        {
-          name: 'dbname', // identifier
-          models: ['./server/models/**/*.js'],  // paths/globs to model files
-          sequelize: new Sequelize(config, opts), // sequelize instance
-          sync: true, // sync models - default false
-          forceSync: false // force sync (drops tables) - default false
-        }
-      ]
-  }
-]);
+server.register([{
+    register: require('hapi-sequelizejs'),
+    options: [{
+        name: 'dbname', // identifier
+        models: ['./server/models/**/*.js'], // paths/globs to model files
+        sequelize: new Sequelize(config, opts), // sequelize instance
+        sync: true, // sync models - default false
+        forceSync: false // force sync (drops tables) - default false
+    }]
+}]);
 ```
 
 ### Model Definitions
@@ -54,8 +50,8 @@ name option as the key.
 
 ```javascript
 function DB(sequelize, models) {
-  this.sequelize = sequelize;
-  this.models = models;
+    this.sequelize = sequelize;
+    this.models = models;
 }
 
 // smth like this
@@ -72,9 +68,9 @@ you would like returned or else the single or first registration will be returne
 
 ```javascript
 handler(request, reply) {
-  const db1 = request.getDb('db1');
-  console.log(db1.sequelize);
-  console.log(db1.models);
+    const db1 = request.getDb('db1');
+    console.log(db1.sequelize);
+    console.log(db1.models);
 }
 ```
 
