@@ -1,14 +1,14 @@
 // return Product model as a function to sequelize.import()
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('Product', {
+    const Product = sequelize.define('Product', {
         name: DataTypes.STRING,
         inventory: DataTypes.INTEGER
-    }, {
-        classMethods: {
-            associate(models) {
-                models.Product.belongsTo(models.Category);
-            }
-        }
     });
+
+    Product.associate = function (models) {
+        models.Product.belongsTo(models.Category);
+    };
+
+    return Product;
 };

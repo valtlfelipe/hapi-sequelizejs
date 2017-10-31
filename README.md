@@ -5,9 +5,8 @@ hapi.js plugin for the Sequelize ORM
 The reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
 See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide)
 
-## Warning!
-
-This version is still in beta. Hardly and only tested with current versions of Hapi (16.x) & Sequelize (3.x)
+### Compatibility
+Compatible with hapi.js version `16.x` and sequelize `4.x`.
 
 ### Installation
 
@@ -36,10 +35,30 @@ A model should export a function that returns a Sequelize model definition ([htt
 
 ```javascript
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('Category', {
+    const Category = sequelize.define('Category', {
         name: DataTypes.STRING,
         rootCategory: DataTypes.BOOLEAN
     });
+
+    return Category;
+};
+```
+
+#### Setting Model associations
+Using the sequelize model instance, define a method called `associate`, that is a function, and receives as parameter all models defined.
+
+```javascript
+module.exports = function (sequelize, DataTypes) {
+    const Category = sequelize.define('Category', {
+        name: DataTypes.STRING,
+        rootCategory: DataTypes.BOOLEAN
+    });
+
+    Category.associate = function (models) {
+        models.Category.hasMany(models.Product);
+    };
+
+    return Category;
 };
 ```
 

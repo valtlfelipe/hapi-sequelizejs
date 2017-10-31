@@ -42,21 +42,18 @@ suite('hapi-sequelizejs', () => {
             register: require('../lib/'),
             options: [{
                 name: 'test',
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
-            expect(server.plugins['hapi-sequelizejs']).to
-                .be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test)
-                .to.be.instanceof(DB);
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
             done();
         });
     });
@@ -69,14 +66,13 @@ suite('hapi-sequelizejs', () => {
             options: [{
                 name: 'test',
                 models: '***',
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.instanceof(Error);
@@ -95,32 +91,24 @@ suite('hapi-sequelizejs', () => {
                     __dirname,
                     '/models/**/*.js'
                 )],
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
-            expect(server.plugins['hapi-sequelizejs']).to
-                .be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test)
-                .to.be.instanceof(DB);
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModels()).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('User')).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('Category')).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('Product')).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+			expect(server.plugins['hapi-sequelizejs'].test.getModels()).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.a.function();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Category')).to.be.a.function();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.a.function();
 
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('DoesNotExists')).to.be.null();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('DoesNotExists')).to.be.null();
 
             done();
         });
@@ -136,29 +124,22 @@ suite('hapi-sequelizejs', () => {
                 models: Path.join(__dirname,
                     '/models/**/*.js'),
                 sync: true,
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
-            expect(server.plugins['hapi-sequelizejs']).to
-                .be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test)
-                .to.be.instanceof(DB);
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModels()).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('User')).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('Category')).to.be.an.object();
-            expect(server.plugins['hapi-sequelizejs'].test
-                .getModel('Product')).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+            expect(server.plugins['hapi-sequelizejs'].test.getModels()).to.be.an.object();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.a.function();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Category')).to.be.a.function();
+            expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.a.function();
             done();
         });
     });
@@ -176,22 +157,20 @@ suite('hapi-sequelizejs', () => {
                     '/models/**/*.js'
                 )],
                 sync: true,
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
 
             let handler = function (request, reply) {
                 let instance = request.getDb();
-                expect(instance).to.be.instanceof(
-                    DB);
+                expect(instance).to.be.instanceof(DB);
                 return reply();
             };
 
@@ -205,8 +184,7 @@ suite('hapi-sequelizejs', () => {
                 method: 'GET',
                 url: '/'
             }, function (response) {
-                expect(response.statusCode).to.equal(
-                    200);
+                expect(response.statusCode).to.equal(200);
                 done();
             });
         });
@@ -225,22 +203,20 @@ suite('hapi-sequelizejs', () => {
                     '/models/**/*.js'
                 )],
                 sync: true,
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
 
             let handler = function (request, reply) {
                 let instance = request.getDb('test');
-                expect(instance).to.be.instanceof(
-                    DB);
+                expect(instance).to.be.instanceof(DB);
                 return reply();
             };
 
@@ -254,8 +230,7 @@ suite('hapi-sequelizejs', () => {
                 method: 'GET',
                 url: '/'
             }, function (response) {
-                expect(response.statusCode).to.equal(
-                    200);
+                expect(response.statusCode).to.equal(200);
                 done();
             });
         });
@@ -268,18 +243,15 @@ suite('hapi-sequelizejs', () => {
             register: require('../lib/'),
             options: [{
                 name: 'test',
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    }),
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                }),
                 onConnect: (instance) => {
-                    expect(instance).to
-                        .be.instanceof(
-                            DB);
+                    expect(instance).to.be.instanceof(DB);
                     done();
                 }
             }]
@@ -302,14 +274,13 @@ suite('hapi-sequelizejs', () => {
                     '/models/**/*.js'
                 )],
                 sync: true,
-                sequelize: new Sequelize(
-                    'test', null, null, {
-                        dialect: 'sqlite',
-                        storage: Path.join(
-                            __dirname,
-                            'db.sqlite'
-                        )
-                    })
+                sequelize: new Sequelize('test', null, null, {
+                    dialect: 'sqlite',
+                    storage: Path.join(
+                        __dirname,
+                        'db.sqlite'
+                    )
+                })
             }]
         }], (err) => {
             expect(err).to.be.undefined();
@@ -318,8 +289,7 @@ suite('hapi-sequelizejs', () => {
                 try {
                     request.getDb('inexistent');
                 } catch (err) {
-                    expect(err).to.be.instanceOf(
-                        Error);
+                    expect(err).to.be.instanceOf(Error);
                     return reply(err);
                 }
             };
@@ -334,8 +304,7 @@ suite('hapi-sequelizejs', () => {
                 method: 'GET',
                 url: '/'
             }, function (response) {
-                expect(response.statusCode).to.equal(
-                    500);
+                expect(response.statusCode).to.equal(500);
                 done();
             });
         });
