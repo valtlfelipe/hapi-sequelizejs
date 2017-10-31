@@ -6,3 +6,4 @@ myhostname
 test/db
 test/db.sqlite
 coverage.html
+package-lock.json
