@@ -4,8 +4,8 @@
   "description": "hapi.js plugin for the Sequelize ORM",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab",
-    "test-cov-html": "lab -a code -r html -o coverage.html",
+    "test": "lab --leaks",
+    "test-cov-html": "lab --leaks -a code -r html -o coverage.html",
     "lint": "eslint lib/*.js",
     "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
   },
@@ -35,19 +35,19 @@
     "code": "^2.1.1",
     "coveralls": "^2.11.14",
     "eslint": "^3.6.1",
-    "hapi": "^16.5.2",
+    "hapi": "^16.6.2",
     "lab": "^14.2.0",
-    "mysql": "^2.14.1",
-    "sqlite3": "^3.1.3"
+    "mysql2": "^1.4.2",
+    "sqlite3": "^3.1.13"
   },
   "peerDependencies": {
-    "sequelize": "^3.x"
+    "sequelize": "^4.x"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "glob": "^7.0.3",
-    "joi": "^8.1.0"
+    "glob": "^7.1.2",
+    "joi": "^12.0.0"
   }
 }
