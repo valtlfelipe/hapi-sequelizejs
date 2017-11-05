@@ -4,8 +4,8 @@
   "description": "hapi.js plugin for the Sequelize ORM",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab",
-    "test-cov-html": "lab -a code -r html -o coverage.html",
+    "test": "lab --leaks",
+    "test-cov-html": "lab --leaks -a code -r html -o coverage.html",
     "lint": "eslint lib/*.js",
     "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
   },
