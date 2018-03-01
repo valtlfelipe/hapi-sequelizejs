@@ -1,53 +1,58 @@
 {
-  "name": "hapi-sequelizejs",
-  "version": "0.2.0",
-  "description": "hapi.js plugin for the Sequelize ORM",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "lab --leaks",
-    "test-cov-html": "lab --leaks -a code -r html -o coverage.html",
-    "lint": "eslint lib/*.js",
-    "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/valtlfelipe/hapi-sequelizejs.git"
-  },
-  "keywords": [
-    "sequelize",
-    "hapi",
-    "mysql",
-    "sqlite",
-    "postgresql",
-    "postgres",
-    "orm",
-    "plugin",
-    "database",
-    "node",
-    "javascript"
-  ],
-  "author": "Dane Grant",
-  "contributors": [
-    "Felipe Valtl de Mello <eu@felipe.im> (https://github.com/valtlfelipe)"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "code": "^2.1.1",
-    "coveralls": "^2.11.14",
-    "eslint": "^3.6.1",
-    "hapi": "^16.6.2",
-    "lab": "^14.2.0",
-    "mysql2": "^1.4.2",
-    "sqlite3": "^3.1.13"
-  },
-  "peerDependencies": {
-    "sequelize": "^4.x"
-  },
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "dependencies": {
-    "glob": "^7.1.2",
-    "joi": "^12.0.0"
-  }
+    "name": "hapi-sequelizejs",
+    "version": "1.0.0",
+    "description": "hapi.js plugin for the Sequelize ORM",
+    "main": "lib/index.js",
+    "scripts": {
+        "test": "lab --leaks",
+        "test-cov-html": "lab --leaks -a code -r html -o coverage.html",
+        "lint": "eslint lib/*.js",
+        "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/valtlfelipe/hapi-sequelizejs.git"
+    },
+    "keywords": [
+        "sequelize",
+        "hapi",
+        "mysql",
+        "sqlite",
+        "postgresql",
+        "postgres",
+        "orm",
+        "plugin",
+        "database",
+        "node",
+        "javascript"
+    ],
+    "author": "Dane Grant",
+    "contributors": [
+        "Felipe Valtl de Mello <eu@felipe.im> (https://github.com/valtlfelipe)",
+        "Jonas Pauthier <jonas.pauthier@gmail.com> (https://github.com/Nargonath)"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "code": "5.2.0",
+        "coveralls": "3.0.0",
+        "eslint": "4.18.1",
+        "hapi": "17.2.1",
+        "lab": "15.3.0",
+        "mysql2": "1.5.2",
+        "sequelize": "4.35.1",
+        "sqlite3": "3.1.13"
+    },
+    "peerDependencies": {
+        "sequelize": "^4.x",
+        "hapi": "^17.0.0"
+    },
+    "engines": {
+        "node": ">=8.0.0",
+        "npm": ">=5.6.0"
+    },
+    "dependencies": {
+        "glob": "7.1.2",
+        "hoek": "5.0.3",
+        "joi": "13.1.2"
+    }
 }
