@@ -7,7 +7,14 @@
         "test": "lab --leaks",
         "test-cov-html": "lab --leaks -a code -r html -o coverage.html",
         "lint": "eslint lib/*.js",
-        "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls"
+        "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls",
+        "precommit": "lint-staged"
+    },
+    "lint-staged": {
+        "{{lib,test}/**/*.js,*.{js,md,json}}": [
+            "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write",
+            "git add"
+        ]
     },
     "repository": {
         "type": "git",
@@ -37,8 +44,11 @@
         "coveralls": "3.0.0",
         "eslint": "4.18.1",
         "hapi": "17.2.1",
+        "husky": "0.14.3",
         "lab": "15.3.0",
+        "lint-staged": "7.0.0",
         "mysql2": "1.5.2",
+        "prettier": "1.11.1",
         "sequelize": "4.35.1",
         "sqlite3": "3.1.13"
     },
