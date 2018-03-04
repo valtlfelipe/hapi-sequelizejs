@@ -2,15 +2,13 @@ language: node_js
 env:
   - NODE_ENV=travis
 node_js:
-  - "4"
-  - "lts/*"
+  - "8"
+  - "9"
   - "node"
 sudo: false
 cache:
   directories:
     - node_modules
-before_script:
-  - npm install sequelize@^4.x
 script:
   - npm run lint
   - npm test

@@ -1,11 +1,14 @@
 # hapi-sequelizejs [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs) [![Coverage Status](https://coveralls.io/repos/github/valtlfelipe/hapi-sequelizejs/badge.svg?branch=master)](https://coveralls.io/github/valtlfelipe/hapi-sequelizejs?branch=master)
+
 hapi.js plugin for the Sequelize ORM
 
 ### What's the difference between hapi-sequelize and hapi-sequelizejs?
+
 The reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
 See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide)
 
 ### Compatibility
+
 Compatible with hapi.js version `16.x` and sequelize `4.x`.
 
 ### Installation
@@ -15,29 +18,34 @@ Compatible with hapi.js version `16.x` and sequelize `4.x`.
 ### Configuration
 
 Simply pass in your sequelize instance and a few basic options and voila. Options accepts a single object
- or an array for multiple dbs.
+or an array for multiple dbs.
 
 ```javascript
-server.register([{
-    register: require('hapi-sequelizejs'),
-    options: [{
-        name: 'dbname', // identifier
-        models: ['./server/models/**/*.js'], // paths/globs to model files
-        sequelize: new Sequelize(config, opts), // sequelize instance
-        sync: true, // sync models - default false
-        forceSync: false // force sync (drops tables) - default false
-    }]
-}]);
+server.register([
+    {
+        register: require('hapi-sequelizejs'),
+        options: [
+            {
+                name: 'dbname', // identifier
+                models: ['./server/models/**/*.js'], // paths/globs to model files
+                sequelize: new Sequelize(config, opts), // sequelize instance
+                sync: true, // sync models - default false
+                forceSync: false, // force sync (drops tables) - default false
+            },
+        ],
+    },
+]);
 ```
 
 ### Model Definitions
+
 A model should export a function that returns a Sequelize model definition ([http://docs.sequelizejs.com/en/latest/docs/models-definition/](http://docs.sequelizejs.com/en/latest/docs/models-definition/)).
 
 ```javascript
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     const Category = sequelize.define('Category', {
         name: DataTypes.STRING,
-        rootCategory: DataTypes.BOOLEAN
+        rootCategory: DataTypes.BOOLEAN,
     });
 
     return Category;
@@ -45,16 +53,17 @@ module.exports = function (sequelize, DataTypes) {
 ```
 
 #### Setting Model associations
+
 Using the sequelize model instance, define a method called `associate`, that is a function, and receives as parameter all models defined.
 
 ```javascript
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     const Category = sequelize.define('Category', {
         name: DataTypes.STRING,
-        rootCategory: DataTypes.BOOLEAN
+        rootCategory: DataTypes.BOOLEAN,
     });
 
-    Category.associate = function (models) {
+    Category.associate = function(models) {
         models.Category.hasMany(models.Product);
     };
 
@@ -103,6 +112,6 @@ Returns all models on the db instance
 
 ### TODO/Contributing
 
-  * finalize api
-  * write tests
-  * improve readme
+*   finalize api
+*   write tests
+*   improve readme
