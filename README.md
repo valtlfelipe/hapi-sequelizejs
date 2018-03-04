@@ -5,11 +5,11 @@ hapi.js plugin for the Sequelize ORM
 ### What's the difference between hapi-sequelize and hapi-sequelizejs?
 
 The reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
-See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide)
+See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide).
 
 ### Compatibility
 
-Compatible with hapi.js version `16.x` and sequelize `4.x`.
+Compatible with hapi.js version `17.x` and sequelize `4.x`.
 
 ### Installation
 
