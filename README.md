@@ -88,7 +88,9 @@ server.plugins['hapi-sequelizejs'][opts.name] = new DB(opts.sequelize, models);
 
 ### API
 
-#### `getDb(name)`
+#### Using `request` object
+
+#####`getDb(name)`
 
 The request object gets decorated with the method `getDb`. This allows you to easily grab a
 DB instance in a route handler. If you have multiple registrations pass the name of the one
@@ -102,13 +104,80 @@ handler(request, reply) {
 }
 ```
 
-#### `db.getModel('User')`
+##### `db.getModel('User')`
 
 Returns single model that matches the passed argument or null if the model doesn't exist.
 
-#### `db.getModels()`
+##### `db.getModels()`
 
 Returns all models on the db instance
+
+#### Without `request` object
+
+To access the dbs intances without using the `request` object you may do this:
+```
+const instances = require('hapi-sequelizejs').instances;
+```
+
+##### `instance.dbs`
+
+Returns an Object with all instances registered.
+
+```
+{
+  [db.name]: db.instance
+}
+```
+
+```
+const instances = require('hapi-sequelizejs').instances;
+const dbs = instances.dbs;
+
+dbs.myDb.getModel('User');
+```
+
+##### `getDb(name?)`
+
+Returns the db instance for the given name or the first registered db instance if no name is given to the function.
+
+```
+const instances = require('hapi-sequelizejs').instances;
+
+const myDb = instances.getDb('myDb');
+
+const firstRegisteredDb = instances.getDb();
+```
+
+> If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `Database not found`.
+
+##### `getModels(dbName?)`
+
+Returns all models registered in the given db's name or the models from the first registered db instance if no name is given to the function.
+
+```
+const instances = require('hapi-sequelizejs').instances;
+
+const myDbModels = instances.getModels('myDb');
+
+const firstRegisteredDbModels = instances.getModels();
+```
+
+> If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `Database not found`.
+
+##### `getModel(dbName, modelName?)`
+
+Return the model to the db's name instance. You may give only the model name to the function, if it's the case, it returns the model from the first registered db instance.
+
+```
+const instances = require('hapi-sequelizejs').instances;
+
+const myDbMyModel = instances.getModel('myDb', 'myModel');
+
+const firstRegisteredDbMyModel = instances.getModel('myModel');
+```
+
+> If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `Database not found`.
+> If there isn't a model for the given name, an Error is thrown: `Database model not found`.
 
 ### TODO/Contributing
 
