@@ -163,7 +163,7 @@ suite('hapi-sequelizejs', () => {
                     const instance = request.getDb();
                     expect(instance).to.be.instanceof(DB);
                     return h.response();
-                }
+                },
             },
         ]);
 
