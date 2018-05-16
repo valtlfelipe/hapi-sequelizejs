@@ -42,7 +42,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -67,7 +67,7 @@ suite('hapi-sequelizejs', () => {
                             sequelize: new Sequelize('test', null, null, {
                                 logging: false,
                                 dialect: 'sqlite',
-                                storage: Path.join(__dirname, 'db.sqlite')
+                                storage: Path.join(__dirname, 'db.sqlite'),
                             }),
                         },
                     ],
@@ -90,7 +90,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -119,7 +119,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -148,7 +148,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -184,7 +184,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -219,7 +219,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                         onConnect: instance => {
                             expect(instance).to.be.instanceof(DB);
@@ -242,7 +242,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                         onConnect: instance => {
                             expect(instance).to.be.instanceof(DB);
@@ -268,7 +268,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -310,7 +310,7 @@ suite('hapi-sequelizejs', () => {
                                 logging: false,
                                 host: '127.0.0.1',
                                 port: 3307,
-                                dialect: 'mysql'
+                                dialect: 'mysql',
                             }),
                         },
                     ],
@@ -336,7 +336,7 @@ suite('hapi-sequelizejs', () => {
                         sequelize: new Sequelize('test', null, null, {
                             logging: false,
                             dialect: 'sqlite',
-                            storage: Path.join(__dirname, 'db.sqlite')
+                            storage: Path.join(__dirname, 'db.sqlite'),
                         }),
                     },
                 ],
@@ -483,7 +483,7 @@ function instanceTestServer() {
                     sequelize: new Sequelize('test', null, null, {
                         logging: false,
                         dialect: 'sqlite',
-                        storage: Path.join(__dirname, 'db.sqlite')
+                        storage: Path.join(__dirname, 'db.sqlite'),
                     }),
                 },
             ],
