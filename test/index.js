@@ -346,7 +346,7 @@ suite('hapi-sequelizejs', () => {
         await server.stop();
 
         const sequelizeInstance = server.plugins['hapi-sequelizejs'].test.sequelize;
-        expect(sequelizeInstance.authenticate()).to.reject();
+        expect(() => sequelizeInstance.authenticate()).to.reject();
     });
 
     test('should get db instances from instances singleton using dbs property', async () => {
