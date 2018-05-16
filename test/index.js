@@ -23,7 +23,7 @@ suite('hapi-sequelizejs', () => {
                 {
                     plugin: require('../lib/'),
                     options: {},
-                }
+                },
             ]);
         } catch (error) {
             expect(error).to.be.instanceof(Error);
@@ -198,8 +198,8 @@ suite('hapi-sequelizejs', () => {
                     const instance = request.getDb('test');
                     expect(instance).to.be.instanceof(DB);
                     return h.response();
-                }
-            }
+                },
+            },
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
