@@ -90,7 +90,7 @@ server.plugins['hapi-sequelizejs'][opts.name] = new DB(opts.sequelize, models);
 
 #### Using `request` object
 
-#####`getDb(name)`
+##### `getDb(name)`
 
 The request object gets decorated with the method `getDb`. This allows you to easily grab a
 DB instance in a route handler. If you have multiple registrations pass the name of the one
@@ -115,6 +115,7 @@ Returns all models on the db instance
 #### Without `request` object
 
 To access the dbs intances without using the `request` object you may do this:
+
 ```
 const instances = require('hapi-sequelizejs').instances;
 ```

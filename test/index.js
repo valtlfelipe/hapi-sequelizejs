@@ -346,7 +346,7 @@ suite('hapi-sequelizejs', () => {
         await server.stop();
 
         const sequelizeInstance = server.plugins['hapi-sequelizejs'].test.sequelize;
-        expect(() => sequelizeInstance.authenticate()).to.reject();
+        expect(sequelizeInstance.authenticate()).to.reject();
     });
 
     test('should get db instances from instances singleton using dbs property', async () => {
@@ -439,7 +439,7 @@ suite('hapi-sequelizejs', () => {
             instances.getDb('other-testdb');
         } catch(error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('Database not found');
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
         }
     });
 
@@ -452,7 +452,7 @@ suite('hapi-sequelizejs', () => {
             instances.getModels('other-testdb');
         } catch(error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('Database not found');
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
         }
     });
 
@@ -465,7 +465,7 @@ suite('hapi-sequelizejs', () => {
             instances.getModel('test', 'DoesNotExist');
         } catch(error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('Database model not found');
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the DoesNotExist model');
         }
     });
 
