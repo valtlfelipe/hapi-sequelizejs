@@ -15,6 +15,7 @@ const { suite, test } = lab;
 const { expect } = Code;
 
 suite('hapi-sequelizejs', () => {
+
     test('should fail to load with no options', async () => {
         const server = new Hapi.Server();
 
