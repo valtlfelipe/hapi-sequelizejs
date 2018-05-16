@@ -207,6 +207,44 @@ suite('hapi-sequelizejs', () => {
         expect(response.statusCode).to.equal(200);
     });
 
+    test('should get User model on request', async () => {
+        const server = await instanceTestServer();
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    expect(request.getModel('User')).to.be.a.function();
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
+    });
+
+    test('should get all models on request', async () => {
+        const server = await instanceTestServer();
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const models = request.getModels();
+                    expect(models).to.be.a.object();
+                    expect(models.User).to.be.a.function();
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
+    });
+
     test('should call onConnect', () => {
         const server = new Hapi.Server();
 
@@ -469,11 +507,33 @@ suite('hapi-sequelizejs', () => {
         }
     });
 
+    test('request DB should be the same object as instances DB', async () => {
+        const server = await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const instance = request.getDb();
+                    expect(instance).to.be.equals(instances.getDb());
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
+    });
+
 });
 
-function instanceTestServer() {
+async function instanceTestServer() {
     const server = new Hapi.Server();
-    return server.register([
+
+    await server.register([
         {
             plugin: require('../lib/'),
             options: [
@@ -489,4 +549,6 @@ function instanceTestServer() {
             ],
         },
     ]);
+
+    return server;
 }
