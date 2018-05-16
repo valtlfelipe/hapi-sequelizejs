@@ -42,10 +42,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
@@ -67,10 +67,10 @@ suite('hapi-sequelizejs', () => {
                                 logging: false,
                                 dialect: 'sqlite',
                                 storage: Path.join(__dirname, 'db.sqlite')
-                            })
-                        }
-                    ]
-                }
+                            }),
+                        },
+                    ],
+                },
             ]);
         } catch (err) {
             expect(err).to.be.instanceof(Error);
@@ -90,10 +90,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
@@ -119,10 +119,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
@@ -148,10 +148,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         server.route([
@@ -184,10 +184,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         server.route([
@@ -222,10 +222,10 @@ suite('hapi-sequelizejs', () => {
                         }),
                         onConnect: instance => {
                             expect(instance).to.be.instanceof(DB);
-                        }
-                    }
-                ]
-            }
+                        },
+                    },
+                ],
+            },
         ]);
     });
 
@@ -246,10 +246,10 @@ suite('hapi-sequelizejs', () => {
                         onConnect: instance => {
                             expect(instance).to.be.instanceof(DB);
                             return Promise.resolve();
-                        }
-                    }
-                ]
-            }
+                        },
+                    },
+                ],
+            },
         ]);
     });
 
@@ -268,10 +268,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         server.route([
@@ -285,8 +285,8 @@ suite('hapi-sequelizejs', () => {
                         expect(err).to.be.instanceOf(Error);
                         throw err;
                     }
-                }
-            }
+                },
+            },
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
@@ -310,10 +310,10 @@ suite('hapi-sequelizejs', () => {
                                 host: '127.0.0.1',
                                 port: 3307,
                                 dialect: 'mysql'
-                            })
-                        }
-                    ]
-                }
+                            }),
+                        },
+                    ],
+                },
             ]);
         } catch (err) {
             expect(err).to.be.instanceOf(Error);
@@ -336,10 +336,10 @@ suite('hapi-sequelizejs', () => {
                             logging: false,
                             dialect: 'sqlite',
                             storage: Path.join(__dirname, 'db.sqlite')
-                        })
-                    }
-                ]
-            }
+                        }),
+                    },
+                ],
+            },
         ]);
 
         await server.stop();
