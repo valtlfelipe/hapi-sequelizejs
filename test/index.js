@@ -9,12 +9,13 @@ const Sequelize = require('sequelize');
 
 const DB = require('../lib/DB');
 
-// Test shortcutse
+// Test shortcuts
 const lab = (exports.lab = Lab.script());
 const { suite, test } = lab;
 const { expect } = Code;
 
 suite('hapi-sequelizejs', () => {
+
     test('should fail to load with no options', async () => {
         const server = new Hapi.Server();
 
@@ -347,4 +348,5 @@ suite('hapi-sequelizejs', () => {
         const sequelizeInstance = server.plugins['hapi-sequelizejs'].test.sequelize;
         expect(() => sequelizeInstance.authenticate()).to.reject();
     });
+
 });
