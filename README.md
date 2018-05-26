@@ -86,11 +86,11 @@ function DB(sequelize, models) {
 server.plugins['hapi-sequelizejs'][opts.name] = new DB(opts.sequelize, models);
 ```
 
-### API
+## API
 
-#### Using `request` object
+### Using `request` object
 
-##### `getDb(name)`
+#### `getDb(name)`
 
 The request object gets decorated with the method `getDb`. This allows you to easily grab a
 DB instance in a route handler. If you have multiple registrations pass the name of the one
@@ -106,15 +106,15 @@ handler(request, reply) {
 
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 
-###### `db.getModel('User')`
+##### `db.getModel('User')`
 
 Returns single model that matches the passed argument or null if the model doesn't exist.
 
-###### `db.getModels()`
+##### `db.getModels()`
 
 Returns all models on the db instance
 
-##### `getModels(dbName?)`
+#### `getModels(dbName?)`
 
 Returns all models registered in the given db's name or the models from the first registered db instance if no name is given to the function.
 
@@ -127,7 +127,7 @@ handler(request, reply) {
 
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 
-##### `getModel(dbName, modelName?)`
+#### `getModel(dbName, modelName?)`
 
 Return the model to the db's name instance. You may give only the model name to the function, if it's the case, it returns the model from the first registered db instance.
 
@@ -141,7 +141,9 @@ handler(request, reply) {
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 > If there isn't a model for the given name, an Error is thrown: `hapi-sequelizejs cannot find the ${modelName} model`.
 
-#### Without `request` object
+---
+
+### Without `request` object
 
 To access the dbs intances without using the `request` object you may do this:
 
