@@ -151,7 +151,7 @@ To access the dbs intances without using the `request` object you may do this:
 const instances = require('hapi-sequelizejs').instances;
 ```
 
-##### `instance.dbs`
+#### `instance.dbs`
 
 Returns an Object with all instances registered.
 
@@ -168,7 +168,7 @@ const dbs = instances.dbs;
 dbs.myDb.getModel('User');
 ```
 
-##### `getDb(name?)`
+#### `getDb(name?)`
 
 Returns the db instance for the given name or the first registered db instance if no name is given to the function.
 
@@ -182,7 +182,7 @@ const firstRegisteredDb = instances.getDb();
 
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 
-##### `getModels(dbName?)`
+#### `getModels(dbName?)`
 
 Returns all models registered in the given db's name or the models from the first registered db instance if no name is given to the function.
 
@@ -196,7 +196,7 @@ const firstRegisteredDbModels = instances.getModels();
 
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 
-##### `getModel(dbName, modelName?)`
+#### `getModel(dbName, modelName?)`
 
 Return the model to the db's name instance. You may give only the model name to the function, if it's the case, it returns the model from the first registered db instance.
 
