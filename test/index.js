@@ -207,6 +207,44 @@ suite('hapi-sequelizejs', () => {
         expect(response.statusCode).to.equal(200);
     });
 
+    test('should get User model on request', async () => {
+        const server = await instanceTestServer();
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    expect(request.getModel('User')).to.be.a.function();
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
+    });
+
+    test('should get all models on request', async () => {
+        const server = await instanceTestServer();
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const models = request.getModels();
+                    expect(models).to.be.a.object();
+                    expect(models.User).to.be.a.function();
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
+    });
+
     test('should call onConnect', () => {
         const server = new Hapi.Server();
 
@@ -346,7 +384,171 @@ suite('hapi-sequelizejs', () => {
         await server.stop();
 
         const sequelizeInstance = server.plugins['hapi-sequelizejs'].test.sequelize;
-        expect(() => sequelizeInstance.authenticate()).to.reject();
+        expect(sequelizeInstance.authenticate()).to.reject();
+    });
+
+    test('should get db instances from instances singleton using dbs property', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.dbs).to.be.an.object();
+        expect(instances.dbs.test).to.be.instanceof(DB);
+    });
+
+    test('should get db instance from instances singleton using getDb', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getDb('test')).to.be.an.object();
+        expect(instances.getDb('test')).to.be.instanceof(DB);
+    });
+
+    test('should get first db instance when no dbName is given to getDb', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getDb()).to.be.instanceof(DB);
+        expect(instances.getDb()).to.be.equal(instances.getDb('test'));
+    });
+
+    test('should load all models from db instance using getDb', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getDb('test').getModels()).to.be.an.object();
+        expect(instances.getDb('test').getModel('User')).to.be.a.function();
+        expect(instances.getDb('test').getModel('Category')).to.be.a.function();
+        expect(instances.getDb('test').getModel('Product')).to.be.a.function();
+        expect(instances.getDb('test').getModel('DoesNotExists')).to.be.null();
+    });
+
+    test('should load all models from db instance using getModels', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getModels('test')).to.be.an.object();
+        expect(instances.getModels('test').User).to.be.a.function();
+        expect(instances.getModels('test').Category).to.be.a.function();
+        expect(instances.getModels('test').Product).to.be.a.function();
+        expect(instances.getModels('test').DoesNotExists).to.be.undefined();
+    });
+
+    test('should load all models from first db instance when no dbName is given using getModels', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getModels()).to.be.an.object();
+        expect(instances.getModels().User).to.be.a.function();
+        expect(instances.getModels().Category).to.be.a.function();
+        expect(instances.getModels().Product).to.be.a.function();
+        expect(instances.getModels().DoesNotExists).to.be.undefined();
+    });
+
+    test('should load model from db instance using getModel', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getModel('test', 'User')).to.be.an.function();
+        expect(instances.getModel('test', 'User')).to.be.equal(instances.getDb('test').getModel('User'));
+    });
+
+    test('should load model from first db instance when no dbName is given using getModel', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        expect(instances.getModel('User')).to.be.an.function();
+        expect(instances.getModel('User')).to.be.equal(instances.getDb('test').getModel('User'));
+    });
+
+    test('should fail when there is no db instance to the given name using getDb', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        try {
+            instances.getDb('other-testdb');
+        } catch(error) {
+            expect(error).to.be.instanceOf(Error);
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
+        }
+    });
+
+    test('should fail when there is no model to the given name using getModels', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        try {
+            instances.getModels('other-testdb');
+        } catch(error) {
+            expect(error).to.be.instanceOf(Error);
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
+        }
+    });
+
+    test('should fail when there is no model to the given name using getModel', async () => {
+        await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        try {
+            instances.getModel('test', 'DoesNotExist');
+        } catch(error) {
+            expect(error).to.be.instanceOf(Error);
+            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the DoesNotExist model');
+        }
+    });
+
+    test('request DB should be the same object as instances DB', async () => {
+        const server = await instanceTestServer();
+
+        const instances = require('../lib').instances;
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const instance = request.getDb();
+                    expect(instance).to.be.equals(instances.getDb());
+                    return h.response();
+                },
+            },
+        ]);
+
+        const response = await server.inject({ method: 'GET', url: '/' });
+        expect(response.statusCode).to.equal(200);
     });
 
 });
+
+async function instanceTestServer() {
+    const server = new Hapi.Server();
+
+    await server.register([
+        {
+            plugin: require('../lib/'),
+            options: [
+                {
+                    name: 'test',
+                    models: Path.join(__dirname, '/models/**/*.js'),
+                    sequelize: new Sequelize('test', null, null, {
+                        logging: false,
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite'),
+                    }),
+                },
+            ],
+        },
+    ]);
+
+    return server;
+}
