@@ -23,7 +23,7 @@ or an array for multiple dbs.
 ```javascript
 server.register([
     {
-        register: require('hapi-sequelizejs'),
+        plugin: require('hapi-sequelizejs'),
         options: [
             {
                 name: 'dbname', // identifier
