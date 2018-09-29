@@ -1,5 +1,3 @@
-'use strict';
-
 // Load modules
 const Path = require('path');
 const Lab = require('lab');
@@ -103,6 +101,31 @@ suite('hapi-sequelizejs', () => {
         expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.a.function();
         expect(server.plugins['hapi-sequelizejs'].test.getModel('Category')).to.be.a.function();
         expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.a.function();
+        expect(server.plugins['hapi-sequelizejs'].test.getModel('DoesNotExists')).to.be.null();
+    });
+  
+    test('should load ignore specific models', async () => {
+        const server = new Hapi.Server();
+        await server.register([{
+            plugin: require('../lib/'),
+            options: [{
+                name: 'test',
+                models: [Path.join(__dirname, '/models/**/*.js')],
+                ignoredModels: [Path.join(__dirname, '/models/shop/**/*.js')],
+                sequelize: new Sequelize('test', null, null, {
+                    logging: false,
+                    dialect: 'sqlite',
+                    storage: Path.join(__dirname, 'db.sqlite'),
+                }),
+            }, ],
+        }, ]);
+
+        expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
+        expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
+        expect(server.plugins['hapi-sequelizejs'].test.getModels()).to.be.an.object();
+        expect(server.plugins['hapi-sequelizejs'].test.getModel('User')).to.be.a.function();
+        expect(server.plugins['hapi-sequelizejs'].test.getModel('Category')).to.be.null();
+        expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.null();
         expect(server.plugins['hapi-sequelizejs'].test.getModel('DoesNotExists')).to.be.null();
     });
 
