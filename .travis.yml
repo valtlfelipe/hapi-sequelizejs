@@ -3,7 +3,8 @@ env:
   - NODE_ENV=travis
 node_js:
   - "8"
-  - "9"
+  - "10"
+  - "node"
 sudo: false
 cache:
   directories:
