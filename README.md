@@ -27,7 +27,8 @@ server.register([
         options: [
             {
                 name: 'dbname', // identifier
-                models: [__dirname + './server/models/**/*.js'], // paths/globs to model files
+                models: [__dirname + '/server/models/**/*.js'], // paths/globs to model files
+                ignoredModels: [__dirname + '/server/models/**/*.js'], // OPTIONAL: paths/globs to ignore files
                 sequelize: new Sequelize(config, opts), // sequelize instance
                 sync: true, // sync models - default false
                 forceSync: false, // force sync (drops tables) - default false
