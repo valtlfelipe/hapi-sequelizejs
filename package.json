@@ -1,6 +1,6 @@
 {
     "name": "hapi-sequelizejs",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "description": "hapi.js plugin for the Sequelize ORM",
     "main": "lib/index.js",
     "files": [
