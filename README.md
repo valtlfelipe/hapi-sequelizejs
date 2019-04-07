@@ -1,4 +1,4 @@
-# hapi-sequelizejs 
+# hapi-sequelizejs
 
 [![npm version](https://img.shields.io/npm/v/hapi-sequelizejs.svg)](https://www.npmjs.com/package/hapi-sequelizejs)
 [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs)
@@ -13,7 +13,7 @@ See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/M
 
 ### Compatibility
 
-Compatible with hapi.js version `17.x` and sequelize `4.x`.
+Compatible with hapi.js version `18.x` and sequelize `5.x`.
 
 ### Installation
 
@@ -218,6 +218,6 @@ const firstRegisteredDbMyModel = instances.getModel('myModel');
 
 ### TODO/Contributing
 
-*   finalize api
-*   write tests
-*   improve readme
+-   finalize api
+-   write tests
+-   improve readme
