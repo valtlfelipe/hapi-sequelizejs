@@ -1,8 +1,8 @@
 // Load modules
 const Path = require('path');
-const Lab = require('lab');
-const Code = require('code');
-const Hapi = require('hapi');
+const Lab = require('@hapi/lab');
+const Code = require('@hapi/code');
+const Hapi = require('@hapi/hapi');
 const Sequelize = require('sequelize');
 
 const DB = require('../lib/DB');
@@ -103,7 +103,7 @@ suite('hapi-sequelizejs', () => {
         expect(server.plugins['hapi-sequelizejs'].test.getModel('Product')).to.be.a.function();
         expect(server.plugins['hapi-sequelizejs'].test.getModel('DoesNotExists')).to.be.null();
     });
-  
+
     test('should load ignore specific models', async () => {
         const server = new Hapi.Server();
         await server.register([{
