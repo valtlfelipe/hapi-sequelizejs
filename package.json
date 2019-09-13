@@ -43,21 +43,21 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "@hapi/code": "5.3.1",
-        "coveralls": "3.0.3",
-        "eslint": "5.16.0",
-        "@hapi/hapi": "^18.3.1",
-        "husky": "1.3.1",
-        "@hapi/lab": "19.1.0",
-        "lint-staged": "8.1.5",
-        "mysql2": "1.6.5",
-        "prettier": "1.16.4",
+        "@hapi/code": "^6.0.0",
+        "coveralls": "^3.0.6",
+        "eslint": "^6.3.0",
+        "@hapi/hapi": "^18.3.2",
+        "husky": "^3.0.5",
+        "@hapi/lab": "^20.2.2",
+        "lint-staged": "^9.2.5",
+        "mysql2": "^1.7.0",
+        "prettier": "^1.18.2",
         "sequelize": "^5.9.2",
-        "sqlite3": "^4.0.6"
+        "sqlite3": "^4.1.0"
     },
     "peerDependencies": {
         "sequelize": "^5.x",
-        "@hapi/hapi": "^18.0.0"
+        "@hapi/hapi": "^18.x"
     },
     "engines": {
         "node": ">=8.0.0",
@@ -65,7 +65,7 @@
     },
     "dependencies": {
         "glob": "7.1.4",
-        "@hapi/hoek": "8.0.2",
-        "@hapi/joi": "15.1.0"
+        "@hapi/hoek": "8.2.4",
+        "@hapi/joi": "16.0.0"
     }
 }
