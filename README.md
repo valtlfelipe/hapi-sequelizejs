@@ -13,7 +13,7 @@ See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/M
 
 ### Compatibility
 
-Compatible with hapi.js version `18.x` and sequelize `5.x`.
+Compatible with hapi.js version `19.x` and sequelize `5.x`.
 
 ### Installation
 
