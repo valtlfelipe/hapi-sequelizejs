@@ -6,14 +6,11 @@
 
 hapi.js plugin for the Sequelize ORM
 
-### What's the difference between hapi-sequelize and hapi-sequelizejs?
-
-The reason of creating this fork is the inactivity of the original [hapi-sequelize](https://github.com/danecando/hapi-sequelize) plugin.
-See the [Migration guide](https://github.com/valtlfelipe/hapi-sequelizejs/wiki/Migration-guide).
-
 ### Compatibility
 
 Compatible with hapi.js version `19.x` and sequelize `5.x`.
+
+Check the [releases page](https://github.com/valtlfelipe/hapi-sequelizejs/releases) for the changelog.
 
 ### Installation
 
@@ -215,9 +212,3 @@ const firstRegisteredDbMyModel = instances.getModel('myModel');
 
 > If there isn't a db instance for the given name or no registered db instance, an Error is thrown: `hapi-sequelizejs cannot find the ${dbName} database instance`.
 > If there isn't a model for the given name, an Error is thrown: `hapi-sequelizejs cannot find the ${modelName} model`.
-
-### TODO/Contributing
-
--   finalize api
--   write tests
--   improve readme
