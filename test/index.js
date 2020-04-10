@@ -13,7 +13,6 @@ const { suite, test } = lab;
 const { expect } = Code;
 
 suite('hapi-sequelizejs', () => {
-
     test('should fail to load with no options', async () => {
         const server = new Hapi.Server();
 
@@ -106,19 +105,23 @@ suite('hapi-sequelizejs', () => {
 
     test('should load ignore specific models', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                ignoredModels: [Path.join(__dirname, '/models/shop/**/*.js')],
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        ignoredModels: [Path.join(__dirname, '/models/shop/**/*.js')],
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
         expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
@@ -191,7 +194,7 @@ suite('hapi-sequelizejs', () => {
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
 
     test('should get named DB instance on request', async () => {
@@ -227,7 +230,7 @@ suite('hapi-sequelizejs', () => {
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
 
     test('should get User model on request', async () => {
@@ -245,7 +248,7 @@ suite('hapi-sequelizejs', () => {
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
 
     test('should get all models on request', async () => {
@@ -265,7 +268,7 @@ suite('hapi-sequelizejs', () => {
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
 
     test('should call onConnect', () => {
@@ -479,7 +482,9 @@ suite('hapi-sequelizejs', () => {
         const instances = require('../lib').instances;
 
         expect(instances.getModel('test', 'User')).to.be.an.function();
-        expect(instances.getModel('test', 'User')).to.be.equal(instances.getDb('test').getModel('User'));
+        expect(instances.getModel('test', 'User')).to.be.equal(
+            instances.getDb('test').getModel('User'),
+        );
     });
 
     test('should load model from first db instance when no dbName is given using getModel', async () => {
@@ -498,9 +503,11 @@ suite('hapi-sequelizejs', () => {
 
         try {
             instances.getDb('other-testdb');
-        } catch(error) {
+        } catch (error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
+            expect(error.message).to.be.equal(
+                'hapi-sequelizejs cannot find the other-testdb database instance',
+            );
         }
     });
 
@@ -511,9 +518,11 @@ suite('hapi-sequelizejs', () => {
 
         try {
             instances.getModels('other-testdb');
-        } catch(error) {
+        } catch (error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the other-testdb database instance');
+            expect(error.message).to.be.equal(
+                'hapi-sequelizejs cannot find the other-testdb database instance',
+            );
         }
     });
 
@@ -524,9 +533,11 @@ suite('hapi-sequelizejs', () => {
 
         try {
             instances.getModel('test', 'DoesNotExist');
-        } catch(error) {
+        } catch (error) {
             expect(error).to.be.instanceOf(Error);
-            expect(error.message).to.be.equal('hapi-sequelizejs cannot find the DoesNotExist model');
+            expect(error.message).to.be.equal(
+                'hapi-sequelizejs cannot find the DoesNotExist model',
+            );
         }
     });
 
@@ -548,9 +559,8 @@ suite('hapi-sequelizejs', () => {
         ]);
 
         const response = await server.inject({ method: 'GET', url: '/' });
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
-
 });
 
 async function instanceTestServer() {
