@@ -10,7 +10,7 @@
         "test": "lab --leaks",
         "test-cov-html": "lab --leaks -a @hapi/code -r html -o coverage.html",
         "lint": "eslint lib/*.js",
-        "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls",
+        "coveralls": "lab -r lcov | ./node_modules/.bin/coveralls",
         "prettify": "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write \"{{lib,test}/**/*.js,*.{js,md,json}}\""
     },
     "husky": {
