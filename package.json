@@ -11,12 +11,16 @@
         "test-cov-html": "lab --leaks -a @hapi/code -r html -o coverage.html",
         "lint": "eslint lib/*.js",
         "coveralls": "./node_modules/lab/bin/lab -r lcov | ./node_modules/.bin/coveralls",
-        "precommit": "lint-staged"
+        "prettify": "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write \"{{lib,test}/**/*.js,*.{js,md,json}}\""
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     },
     "lint-staged": {
         "{{lib,test}/**/*.js,*.{js,md,json}}": [
-            "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write",
-            "git add"
+            "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write"
         ]
     },
     "repository": {

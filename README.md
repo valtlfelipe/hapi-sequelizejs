@@ -7,6 +7,7 @@
 A [hapi.js](https://github.com/hapijs/hapi) plugin to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
 
 ## Support me
+
 If you like this plugin, please support my work and help maintaining it.
 
 <a href="https://www.buymeacoffee.com/valtlfelipe" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200"></a>
@@ -51,7 +52,7 @@ server.register([
 A model should export a function that returns a Sequelize model definition ([http://docs.sequelizejs.com/en/latest/docs/models-definition/](http://docs.sequelizejs.com/en/latest/docs/models-definition/)).
 
 ```javascript
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     const Category = sequelize.define('Category', {
         name: DataTypes.STRING,
         rootCategory: DataTypes.BOOLEAN,
@@ -66,13 +67,13 @@ module.exports = function(sequelize, DataTypes) {
 Using the sequelize model instance, define a method called `associate`, that is a function, and receives as parameter all models defined.
 
 ```javascript
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     const Category = sequelize.define('Category', {
         name: DataTypes.STRING,
         rootCategory: DataTypes.BOOLEAN,
     });
 
-    Category.associate = function(models) {
+    Category.associate = function (models) {
         models.Category.hasMany(models.Product);
     };
 

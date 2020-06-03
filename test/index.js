@@ -9,23 +9,20 @@ const DB = require('../lib/DB');
 
 // Test shortcuts
 const lab = (exports.lab = Lab.script());
-const {
-    suite,
-    test
-} = lab;
-const {
-    expect
-} = Code;
+const { suite, test } = lab;
+const { expect } = Code;
 
 suite('hapi-sequelizejs', () => {
     test('should fail to load with no options', async () => {
         const server = new Hapi.Server();
 
         try {
-            await server.register([{
-                plugin: require('../lib/'),
-                options: {},
-            }, ]);
+            await server.register([
+                {
+                    plugin: require('../lib/'),
+                    options: {},
+                },
+            ]);
         } catch (error) {
             expect(error).to.be.instanceof(Error);
         }
@@ -33,17 +30,21 @@ suite('hapi-sequelizejs', () => {
 
     test('should load a good configuration', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
         expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
@@ -53,18 +54,22 @@ suite('hapi-sequelizejs', () => {
         const server = new Hapi.Server();
 
         try {
-            await server.register([{
-                plugin: require('../lib/'),
-                options: [{
-                    name: 'test',
-                    models: '***',
-                    sequelize: new Sequelize('test', null, null, {
-                        logging: false,
-                        dialect: 'sqlite',
-                        storage: Path.join(__dirname, 'db.sqlite'),
-                    }),
-                }, ],
-            }, ]);
+            await server.register([
+                {
+                    plugin: require('../lib/'),
+                    options: [
+                        {
+                            name: 'test',
+                            models: '***',
+                            sequelize: new Sequelize('test', null, null, {
+                                logging: false,
+                                dialect: 'sqlite',
+                                storage: Path.join(__dirname, 'db.sqlite'),
+                            }),
+                        },
+                    ],
+                },
+            ]);
         } catch (err) {
             expect(err).to.be.instanceof(Error);
         }
@@ -72,18 +77,22 @@ suite('hapi-sequelizejs', () => {
 
     test('should load all models', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
         expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
@@ -96,19 +105,23 @@ suite('hapi-sequelizejs', () => {
 
     test('should load ignore specific models', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                ignoredModels: [Path.join(__dirname, '/models/shop/**/*.js')],
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        ignoredModels: [Path.join(__dirname, '/models/shop/**/*.js')],
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
         expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
@@ -121,19 +134,23 @@ suite('hapi-sequelizejs', () => {
 
     test('should sync all models', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: Path.join(__dirname, '/models/**/*.js'),
-                sync: true,
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: Path.join(__dirname, '/models/**/*.js'),
+                        sync: true,
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         expect(server.plugins['hapi-sequelizejs']).to.be.an.object();
         expect(server.plugins['hapi-sequelizejs'].test).to.be.instanceof(DB);
@@ -146,66 +163,78 @@ suite('hapi-sequelizejs', () => {
     test('should get DB instance on request', async () => {
         const server = new Hapi.Server();
 
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                sync: true,
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
-
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request, h) {
-                const instance = request.getDb();
-                expect(instance).to.be.instanceof(DB);
-                return h.response();
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        sync: true,
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
             },
-        }, ]);
+        ]);
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const instance = request.getDb();
+                    expect(instance).to.be.instanceof(DB);
+                    return h.response();
+                },
+            },
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(204);
     });
 
     test('should get named DB instance on request', async () => {
         const server = new Hapi.Server();
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                sync: true,
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
-
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request, h) {
-                const instance = request.getDb('test');
-                expect(instance).to.be.instanceof(DB);
-                return h.response();
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        sync: true,
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
             },
-        }, ]);
+        ]);
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const instance = request.getDb('test');
+                    expect(instance).to.be.instanceof(DB);
+                    return h.response();
+                },
+            },
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(204);
     });
@@ -213,18 +242,20 @@ suite('hapi-sequelizejs', () => {
     test('should get User model on request', async () => {
         const server = await instanceTestServer();
 
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request, h) {
-                expect(request.getModel('User')).to.be.a.function();
-                return h.response();
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    expect(request.getModel('User')).to.be.a.function();
+                    return h.response();
+                },
             },
-        }, ]);
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(204);
     });
@@ -232,20 +263,22 @@ suite('hapi-sequelizejs', () => {
     test('should get all models on request', async () => {
         const server = await instanceTestServer();
 
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request, h) {
-                const models = request.getModels();
-                expect(models).to.be.a.object();
-                expect(models.User).to.be.a.function();
-                return h.response();
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const models = request.getModels();
+                    expect(models).to.be.a.object();
+                    expect(models.User).to.be.a.function();
+                    return h.response();
+                },
             },
-        }, ]);
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(204);
     });
@@ -253,95 +286,113 @@ suite('hapi-sequelizejs', () => {
     test('should call onConnect returning a non promise', () => {
         const server = new Hapi.Server();
 
-        return server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-                onConnect: instance => {
-                    expect(instance).to.be.instanceof(DB);
-                    return true;
-                },
-            }, ],
-        }, ]);
+        return server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                        onConnect: (instance) => {
+                            expect(instance).to.be.instanceof(DB);
+                            return true;
+                        },
+                    },
+                ],
+            },
+        ]);
     });
 
     test('should call onConnect returning a falsy value', () => {
         const server = new Hapi.Server();
 
-        return server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-                onConnect: instance => {
-                    expect(instance).to.be.instanceof(DB);
-                },
-            }, ],
-        }, ]);
+        return server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                        onConnect: (instance) => {
+                            expect(instance).to.be.instanceof(DB);
+                        },
+                    },
+                ],
+            },
+        ]);
     });
 
     test('should call onConnect with a promise', () => {
         const server = new Hapi.Server();
 
-        return server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-                onConnect: instance => {
-                    expect(instance).to.be.instanceof(DB);
-                    return Promise.resolve();
-                },
-            }, ],
-        }, ]);
+        return server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                        onConnect: (instance) => {
+                            expect(instance).to.be.instanceof(DB);
+                            return Promise.resolve();
+                        },
+                    },
+                ],
+            },
+        ]);
     });
 
     test('should throw error on getting invalid named DB instance', async () => {
         const server = new Hapi.Server();
 
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                sync: true,
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
-
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request) {
-                try {
-                    request.getDb('inexistent');
-                } catch (err) {
-                    expect(err).to.be.instanceOf(Error);
-                    throw err;
-                }
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        sync: true,
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
             },
-        }, ]);
+        ]);
+
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request) {
+                    try {
+                        request.getDb('inexistent');
+                    } catch (err) {
+                        expect(err).to.be.instanceOf(Error);
+                        throw err;
+                    }
+                },
+            },
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(500);
     });
@@ -350,20 +401,24 @@ suite('hapi-sequelizejs', () => {
         const server = new Hapi.Server();
 
         try {
-            await server.register([{
-                plugin: require('../lib/'),
-                options: [{
-                    name: 'test',
-                    models: [Path.join(__dirname, '/models/**/*.js')],
-                    sync: true,
-                    sequelize: new Sequelize('shop', 'root', '', {
-                        logging: false,
-                        host: '127.0.0.1',
-                        port: 3307,
-                        dialect: 'mysql',
-                    }),
-                }, ],
-            }, ]);
+            await server.register([
+                {
+                    plugin: require('../lib/'),
+                    options: [
+                        {
+                            name: 'test',
+                            models: [Path.join(__dirname, '/models/**/*.js')],
+                            sync: true,
+                            sequelize: new Sequelize('shop', 'root', '', {
+                                logging: false,
+                                host: '127.0.0.1',
+                                port: 3307,
+                                dialect: 'mysql',
+                            }),
+                        },
+                    ],
+                },
+            ]);
         } catch (err) {
             expect(err).to.be.instanceOf(Error);
             expect(err.message).to.include('ECONNREFUSED');
@@ -373,19 +428,23 @@ suite('hapi-sequelizejs', () => {
     test('should close sequelize connection on server stop', async () => {
         const server = new Hapi.Server();
 
-        await server.register([{
-            plugin: require('../lib/'),
-            options: [{
-                name: 'test',
-                models: [Path.join(__dirname, '/models/**/*.js')],
-                sync: true,
-                sequelize: new Sequelize('test', null, null, {
-                    logging: false,
-                    dialect: 'sqlite',
-                    storage: Path.join(__dirname, 'db.sqlite'),
-                }),
-            }, ],
-        }, ]);
+        await server.register([
+            {
+                plugin: require('../lib/'),
+                options: [
+                    {
+                        name: 'test',
+                        models: [Path.join(__dirname, '/models/**/*.js')],
+                        sync: true,
+                        sequelize: new Sequelize('test', null, null, {
+                            logging: false,
+                            dialect: 'sqlite',
+                            storage: Path.join(__dirname, 'db.sqlite'),
+                        }),
+                    },
+                ],
+            },
+        ]);
 
         await server.stop();
 
@@ -526,19 +585,21 @@ suite('hapi-sequelizejs', () => {
 
         const instances = require('../lib').instances;
 
-        server.route([{
-            method: 'GET',
-            path: '/',
-            handler(request, h) {
-                const instance = request.getDb();
-                expect(instance).to.be.equals(instances.getDb());
-                return h.response();
+        server.route([
+            {
+                method: 'GET',
+                path: '/',
+                handler(request, h) {
+                    const instance = request.getDb();
+                    expect(instance).to.be.equals(instances.getDb());
+                    return h.response();
+                },
             },
-        }, ]);
+        ]);
 
         const response = await server.inject({
             method: 'GET',
-            url: '/'
+            url: '/',
         });
         expect(response.statusCode).to.equal(204);
     });
@@ -547,18 +608,22 @@ suite('hapi-sequelizejs', () => {
 async function instanceTestServer() {
     const server = new Hapi.Server();
 
-    await server.register([{
-        plugin: require('../lib/'),
-        options: [{
-            name: 'test',
-            models: Path.join(__dirname, '/models/**/*.js'),
-            sequelize: new Sequelize('test', null, null, {
-                logging: false,
-                dialect: 'sqlite',
-                storage: Path.join(__dirname, 'db.sqlite'),
-            }),
-        }, ],
-    }, ]);
+    await server.register([
+        {
+            plugin: require('../lib/'),
+            options: [
+                {
+                    name: 'test',
+                    models: Path.join(__dirname, '/models/**/*.js'),
+                    sequelize: new Sequelize('test', null, null, {
+                        logging: false,
+                        dialect: 'sqlite',
+                        storage: Path.join(__dirname, 'db.sqlite'),
+                    }),
+                },
+            ],
+        },
+    ]);
 
     return server;
 }
