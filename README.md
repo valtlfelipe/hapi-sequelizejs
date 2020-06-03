@@ -6,24 +6,24 @@
 
 A [hapi.js](https://github.com/hapijs/hapi) plugin for to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
 
-### Support me
+## Support me
 If you like this plugin, please support my work and help maintaining it.
 
 <a href="https://www.buymeacoffee.com/valtlfelipe" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200"></a>
 
 Thanks in advance ❤️
 
-### Compatibility
+## Compatibility
 
 Compatible with hapi.js version `19.x` and sequelize `5.x`.
 
 Check the [releases page](https://github.com/valtlfelipe/hapi-sequelizejs/releases) for the changelog.
 
-### Installation
+## Installation
 
 `npm install hapi-sequelizejs`
 
-### Configuration
+## Configuration
 
 Simply pass in your sequelize instance and a few basic options and voila. Options accepts a single object
 or an array for multiple dbs.
@@ -46,7 +46,7 @@ server.register([
 ]);
 ```
 
-### Model Definitions
+## Model Definitions
 
 A model should export a function that returns a Sequelize model definition ([http://docs.sequelizejs.com/en/latest/docs/models-definition/](http://docs.sequelizejs.com/en/latest/docs/models-definition/)).
 
@@ -61,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
 };
 ```
 
-#### Setting Model associations
+### Setting Model associations
 
 Using the sequelize model instance, define a method called `associate`, that is a function, and receives as parameter all models defined.
 
@@ -80,7 +80,7 @@ module.exports = function(sequelize, DataTypes) {
 };
 ```
 
-### Database Instances
+## Database Instances
 
 Each registration adds a DB instance to the `server.plugins['hapi-sequelizejs']` object with the
 name option as the key.
