@@ -4,7 +4,14 @@
 [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs)
 [![Coverage Status](https://coveralls.io/repos/github/valtlfelipe/hapi-sequelizejs/badge.svg?branch=master)](https://coveralls.io/github/valtlfelipe/hapi-sequelizejs?branch=master)
 
-hapi.js plugin for the Sequelize ORM
+A [hapi.js](https://github.com/hapijs/hapi) plugin for to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
+
+### Support me
+If you like this plugin, please support my work and help maintaining it.
+
+<a href="https://www.buymeacoffee.com/valtlfelipe" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200"></a>
+
+Thanks in advance ❤️
 
 ### Compatibility
 
@@ -14,7 +21,7 @@ Check the [releases page](https://github.com/valtlfelipe/hapi-sequelizejs/releas
 
 ### Installation
 
-`npm install --save hapi-sequelizejs`
+`npm install hapi-sequelizejs`
 
 ### Configuration
 
@@ -84,7 +91,7 @@ function DB(sequelize, models) {
     this.models = models;
 }
 
-// smth like this
+// something like this
 server.plugins['hapi-sequelizejs'][opts.name] = new DB(opts.sequelize, models);
 ```
 
