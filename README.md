@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/valtlfelipe/hapi-sequelizejs.svg?branch=master)](https://travis-ci.org/valtlfelipe/hapi-sequelizejs)
 [![Coverage Status](https://coveralls.io/repos/github/valtlfelipe/hapi-sequelizejs/badge.svg?branch=master)](https://coveralls.io/github/valtlfelipe/hapi-sequelizejs?branch=master)
 
-A [hapi.js](https://github.com/hapijs/hapi) plugin for to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
+A [hapi.js](https://github.com/hapijs/hapi) plugin to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
 
 ## Support me
 If you like this plugin, please support my work and help maintaining it.
