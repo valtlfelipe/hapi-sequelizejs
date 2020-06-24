@@ -1,4 +1,4 @@
-// return User model as a function to sequelize.import()
+// return User model as a function
 
 module.exports = function (sequelize, DataTypes) {
     return sequelize.define('User', {

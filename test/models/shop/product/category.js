@@ -1,4 +1,4 @@
-// return Category model as a function to sequelize.import()
+// return Category model as a function
 
 module.exports = function (sequelize, DataTypes) {
     const Category = sequelize.define('Category', {

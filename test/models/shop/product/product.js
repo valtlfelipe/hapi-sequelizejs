@@ -1,4 +1,4 @@
-// return Product model as a function to sequelize.import()
+// return Product model as a function
 
 module.exports = function (sequelize, DataTypes) {
     const Product = sequelize.define('Product', {
