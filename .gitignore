@@ -8,3 +8,4 @@ test/db.sqlite
 coverage.html
 yarn.lock
 yarn-error.log
+.npmrc
