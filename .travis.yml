@@ -4,7 +4,6 @@ env:
 node_js:
   - "12"
   - "node"
-sudo: false
 cache:
   directories:
     - node_modules
