@@ -1,6 +1,6 @@
 {
     "name": "hapi-sequelizejs",
-    "version": "4.1.0",
+    "version": "4.1.1",
     "description": "hapi.js plugin for the Sequelize ORM",
     "main": "lib/index.js",
     "files": [
@@ -50,15 +50,15 @@
     "license": "MIT",
     "devDependencies": {
         "@hapi/code": "^8.0.1",
+        "@hapi/hapi": "^19.1.1",
+        "@hapi/lab": "^22.0.4",
         "coveralls": "^3.1.0",
         "eslint": "^7.1.0",
-        "@hapi/hapi": "^19.1.1",
         "husky": "^4.2.5",
-        "@hapi/lab": "^22.0.4",
         "lint-staged": "^10.2.8",
         "mysql2": "^2.1.0",
         "prettier": "^2.0.5",
-        "sequelize": "^5.21.5",
+        "sequelize": "^6.1.0",
         "sqlite3": "^4.2.0"
     },
     "peerDependencies": {
@@ -70,9 +70,9 @@
         "npm": ">=5.6.0"
     },
     "dependencies": {
-        "glob": "7.1.6",
         "@hapi/hoek": "9.0.4",
-        "@hapi/joi": "17.1.1"
+        "@hapi/joi": "17.1.1",
+        "glob": "7.1.6"
     },
     "funding": {
         "type": "individual",

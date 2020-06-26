@@ -16,7 +16,7 @@ Thanks in advance ❤️
 
 ## Compatibility
 
-Compatible with hapi.js version `19.x` and sequelize `5.x`.
+Compatible with hapi.js version `19.x` and sequelize `6.x`.
 
 Check the [releases page](https://github.com/valtlfelipe/hapi-sequelizejs/releases) for the changelog.
 
