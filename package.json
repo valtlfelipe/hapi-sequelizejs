@@ -59,7 +59,7 @@
         "mysql2": "^2.1.0",
         "prettier": "^2.0.5",
         "sequelize": "^6.0.0",
-        "sqlite3": "^4.2.0"
+        "sqlite3": "^5.0.0"
     },
     "peerDependencies": {
         "sequelize": "5.x || 6.x",
