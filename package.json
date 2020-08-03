@@ -51,7 +51,7 @@
     "devDependencies": {
         "@hapi/code": "^8.0.1",
         "@hapi/hapi": "^19.1.1",
-        "@hapi/lab": "^22.0.4",
+        "@hapi/lab": "^23.0.0",
         "coveralls": "^3.1.0",
         "eslint": "^7.3.1",
         "husky": "^4.2.5",
