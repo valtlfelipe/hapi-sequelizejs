@@ -70,7 +70,7 @@
         "npm": ">=5.6.0"
     },
     "dependencies": {
-        "@hapi/hoek": "9.0.4",
+        "@hapi/hoek": "9.1.0",
         "@hapi/joi": "17.1.1",
         "glob": "7.1.6"
     },
