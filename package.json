@@ -53,12 +53,12 @@
         "@hapi/hapi": "^20.0.0",
         "@hapi/lab": "^23.0.0",
         "coveralls": "^3.1.0",
-        "eslint": "^7.7.0",
-        "husky": "^4.2.5",
-        "lint-staged": "^10.2.11",
+        "eslint": "^7.9.0",
+        "husky": "^4.3.0",
+        "lint-staged": "^10.3.0",
         "mysql2": "^2.1.0",
-        "prettier": "^2.0.5",
-        "sequelize": "^6.0.0",
+        "prettier": "^2.1.2",
+        "sequelize": "^6.3.5",
         "sqlite3": "^5.0.0"
     },
     "peerDependencies": {
@@ -70,7 +70,7 @@
         "npm": ">=5.6.0"
     },
     "dependencies": {
-        "@hapi/hoek": "9.0.4",
+        "@hapi/hoek": "9.1.0",
         "@hapi/joi": "17.1.1",
         "glob": "7.1.6"
     },
