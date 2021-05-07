@@ -71,7 +71,7 @@
     },
     "dependencies": {
         "@hapi/hoek": "9.1.1",
-        "glob": "7.1.6",
+        "glob": "7.1.7",
         "joi": "^17.4.0"
     },
     "funding": {
