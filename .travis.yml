@@ -3,6 +3,7 @@ env:
   - NODE_ENV=travis
 node_js:
   - "12"
+  - "14"
   - "node"
 cache:
   directories:
