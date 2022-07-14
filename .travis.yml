@@ -5,7 +5,7 @@ node_js:
     - "12"
     - "14"
     - "16"
-    - "node"
+    - "18"
 cache:
     directories:
         - node_modules
