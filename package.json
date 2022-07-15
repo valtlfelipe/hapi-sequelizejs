@@ -13,11 +13,6 @@
         "coveralls": "lab -r lcov | ./node_modules/.bin/coveralls",
         "prettify": "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write \"{{lib,test}/**/*.js,*.{js,md,json}}\""
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
         "{{lib,test}/**/*.js,*.{js,md,json}}": [
             "prettier --print-width 100 --tab-width 4 --single-quote --trailing-comma all --write"
@@ -49,17 +44,17 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "@hapi/code": "^8.0.3",
-        "@hapi/hapi": "^20.0.0",
-        "@hapi/lab": "^24.3.2",
+        "@hapi/code": "^9.0.1",
+        "@hapi/hapi": "^20.2.2",
+        "@hapi/lab": "^25.0.1",
         "coveralls": "^3.1.1",
-        "eslint": "^8.0.1",
-        "husky": "^7.0.2",
-        "lint-staged": "^11.2.3",
-        "mysql2": "^2.3.1",
-        "prettier": "^2.4.1",
-        "sequelize": "^6.3.5",
-        "sqlite3": "^5.0.2"
+        "eslint": "^8.19.0",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.3",
+        "mysql2": "^2.3.3",
+        "prettier": "^2.7.1",
+        "sequelize": "^6.21.3",
+        "sqlite3": "^5.0.9"
     },
     "peerDependencies": {
         "sequelize": "5.x || 6.x",
@@ -71,8 +66,8 @@
     },
     "dependencies": {
         "@hapi/hoek": "9.2.1",
-        "glob": "7.2.0",
-        "joi": "^17.4.2"
+        "glob": "8.0.3",
+        "joi": "^17.6.0"
     },
     "funding": {
         "type": "individual",
