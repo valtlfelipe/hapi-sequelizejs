@@ -65,7 +65,7 @@
         "npm": ">=5.6.0"
     },
     "dependencies": {
-        "@hapi/hoek": "9.2.1",
+        "@hapi/hoek": "10.0.1",
         "glob": "8.0.3",
         "joi": "^17.6.0"
     },
