@@ -1,12 +1,16 @@
 name: Test Pull Requests
 
 on:
-    pull_request:
+    push:
         branches:
             - master
+    pull_request:
+        types:
+            - opened
+            - synchronize
 
 jobs:
-    build:
+    test_matrix:
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -18,6 +22,19 @@ jobs:
               with:
                   cache: npm
                   node-version: ${{ matrix.node }}
+            - run: npm ci
+            - run: npm run lint
+            - run: npm test
+
+    test:
+        runs-on: ubuntu-latest
+        needs: test_matrix
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: npm
             - run: npm ci
             - run: npm run lint
             - run: npm test
