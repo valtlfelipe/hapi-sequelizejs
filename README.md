@@ -20,6 +20,7 @@ Compatible with these versions:
 -   hapi.js
     -   `19.x`
     -   `20.x`
+    -   `21.x`
 -   sequelize
     -   `5.x`
     -   `6.x`
