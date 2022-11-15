@@ -1,7 +1,7 @@
 # hapi-sequelizejs
 
 [![npm version](https://img.shields.io/npm/v/hapi-sequelizejs.svg)](https://www.npmjs.com/package/hapi-sequelizejs)
-[![Build Status](https://github.com/valtlfelipe/hapi-sequelizejs/workflows/test/badge.svg?branch=master)](https://github.com/valtlfelipe/hapi-sequelizejs/actions?query=workflow%3Atest+branch%3Amaster)
+[![Build Status](https://github.com/valtlfelipe/hapi-sequelizejs/workflows/Test/badge.svg?branch=master)](https://github.com/valtlfelipe/hapi-sequelizejs/actions?query=workflow%3ATest+branch%3Amaster)
 
 A [hapi.js](https://github.com/hapijs/hapi) plugin to connect with [Sequelize ORM](https://github.com/sequelize/sequelize/).
 
